@@ -9,24 +9,24 @@
         Height="450"
         Width="800">
     <Grid>
-        <DataGrid Name="DG1"
+        <DataGrid Name="MenuPlan"
                   ItemsSource="{Binding}"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Monday"
-                                    Binding="{Binding Monday}" />
+                                    Binding="{Binding Food}" />
                 <DataGridTextColumn Header="Tuesday"
-                                    Binding="{Binding Tuesday}" />
+                                    Binding="{Binding Food}" />
                 <DataGridTextColumn Header="Wednesday"
-                                    Binding="{Binding Wednesday}" />
+                                    Binding="{Binding Food}" />
                 <DataGridTextColumn Header="Thursday"
-                                    Binding="{Binding Thursday}" />
+                                    Binding="{Binding Food}" />
                 <DataGridTextColumn Header="Friday"
-                                    Binding="{Binding Thursday}" />
+                                    Binding="{Binding Food}" />
                 <DataGridTextColumn Header="Saturday"
-                                    Binding="{Binding Thursday}" />
+                                    Binding="{Binding Food}" />
                 <DataGridTextColumn Header="Sunday"
-                                    Binding="{Binding Thursday}" />
+                                    Binding="{Binding Food}" />
             </DataGrid.Columns>
         </DataGrid>
 

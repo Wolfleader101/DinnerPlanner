@@ -14,19 +14,19 @@
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Monday"
-                                    Binding="{Binding Food}" />
+                                    Binding="{Binding Mon}" />
                 <DataGridTextColumn Header="Tuesday"
-                                    Binding="{Binding Food}" />
+                                    Binding="{Binding Tues}" />
                 <DataGridTextColumn Header="Wednesday"
-                                    Binding="{Binding Food}" />
+                                    Binding="{Binding Wed}" />
                 <DataGridTextColumn Header="Thursday"
-                                    Binding="{Binding Food}" />
+                                    Binding="{Binding Thurs}" />
                 <DataGridTextColumn Header="Friday"
-                                    Binding="{Binding Food}" />
+                                    Binding="{Binding Fri}" />
                 <DataGridTextColumn Header="Saturday"
-                                    Binding="{Binding Food}" />
+                                    Binding="{Binding Sat}" />
                 <DataGridTextColumn Header="Sunday"
-                                    Binding="{Binding Food}" />
+                                    Binding="{Binding Sun}" />
             </DataGrid.Columns>
         </DataGrid>
 

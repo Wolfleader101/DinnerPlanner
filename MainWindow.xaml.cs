@@ -26,101 +26,107 @@ namespace DinnerPlanner
 		public MainWindow()
 		{
 			InitializeComponent();
-            MenuPlan.ItemsSource = Meal.GetMeals();
-        }
+			MenuPlan.ItemsSource = Meal.GetMeals();
+		}
 	}
 }
 public class Meal : INotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-    private string food;
+	public event PropertyChangedEventHandler PropertyChanged;
+	private string mon;
+	private string tues;
+	private string wed;
+	private string thurs;
+	private string fri;
+	private string sat;
+	private string sun;
 
-    public string Mon
-    {
-        get { return food; }
-        set
-        {
-            food = value;
-            OnPropertyChanged();
-        }
-    }
-    public string Tues
-    {
-        get { return food; }
-        set
-        {
-            food = value;
-            OnPropertyChanged();
-        }
-    }
-    public string Wed
-    {
-        get { return food; }
-        set
-        {
-            food = value;
-            OnPropertyChanged();
-        }
-    }
-    public string Thurs
-    {
-        get { return food; }
-        set
-        {
-            food = value;
-            OnPropertyChanged();
-        }
-    }
-    public string Fri
-    {
-        get { return food; }
-        set
-        {
-            food = value;
-            OnPropertyChanged();
-        }
-    }
-    public string Sat
-    {
-        get { return food; }
-        set
-        {
-            food = value;
-            OnPropertyChanged();
-        }
-    }
-    public string Sun
-    {
-        get { return food; }
-        set
-        {
-            food = value;
-            OnPropertyChanged();
-        }
-    }
+	public string Mon
+	{
+		get { return mon; }
+		set
+		{
+			mon = value;
+			OnPropertyChanged();
+		}
+	}
+	public string Tues
+	{
+		get { return tues; }
+		set
+		{
+			tues = value;
+			OnPropertyChanged();
+		}
+	}
+	public string Wed
+	{
+		get { return wed; }
+		set
+		{
+			wed = value;
+			OnPropertyChanged();
+		}
+	}
+	public string Thurs
+	{
+		get { return thurs; }
+		set
+		{
+			thurs = value;
+			OnPropertyChanged();
+		}
+	}
+	public string Fri
+	{
+		get { return fri; }
+		set
+		{
+			fri = value;
+			OnPropertyChanged();
+		}
+	}
+	public string Sat
+	{
+		get { return sat; }
+		set
+		{
+			sat = value;
+			OnPropertyChanged();
+		}
+	}
+	public string Sun
+	{
+		get { return sun; }
+		set
+		{
+			sun = value;
+			OnPropertyChanged();
+		}
+	}
 
-    public static ObservableCollection<Meal> GetMeals()
-    {
-        var meals = new ObservableCollection<Meal>();
+	public static ObservableCollection<Meal> GetMeals()
+	{
+		var meals = new ObservableCollection<Meal>();
 
-        meals.Add(new Meal()
-        {
-            Mon = "Ali"
-            Tues = "Ali"
-            Wed = "Ali"
-            Thurs = "Ali"
-            Fri = "Ali"
-            Sat = "Ali"
-            Sun = "Ali"
-        });
+		meals.Add(new Meal()
+		{
+			Mon = "Ali",
+			Tues = "test",
+			Wed = "burger",
+			Thurs = "chips",
+			Fri = "dog",
+			Sat = "cat",
+			Sun = "gjkjf"
+		});
 
-        return meals;
-    }
+		return meals;
+	}
 
-    protected void OnPropertyChanged([CallerMemberName] string name = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+	protected void OnPropertyChanged([CallerMemberName] string name = null)
+	{
+		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+	}
 }
 
 

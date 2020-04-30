@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -122,10 +124,20 @@ public class Meal : INotifyPropertyChanged
 
 		return meals;
 	}
-
 	protected void OnPropertyChanged([CallerMemberName] string name = null)
 	{
-		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+	PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+		Console.WriteLine(this);
+		// serialize JSON to a string and then write string to a file
+		File.WriteAllText(@"./test.json", JsonConvert.SerializeObject(name));
+
+		//open file stream
+		using (StreamWriter file = File.CreateText(@"./test.json"))
+		{
+			JsonSerializer serializer = new JsonSerializer();
+			serializer.Serialize(file, name);
+		}
 	}
 }
 

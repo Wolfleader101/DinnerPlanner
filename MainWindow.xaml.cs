@@ -35,7 +35,61 @@ public class Meal : INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
     private string food;
 
-    public string Food
+    public string Mon
+    {
+        get { return food; }
+        set
+        {
+            food = value;
+            OnPropertyChanged();
+        }
+    }
+    public string Tues
+    {
+        get { return food; }
+        set
+        {
+            food = value;
+            OnPropertyChanged();
+        }
+    }
+    public string Wed
+    {
+        get { return food; }
+        set
+        {
+            food = value;
+            OnPropertyChanged();
+        }
+    }
+    public string Thurs
+    {
+        get { return food; }
+        set
+        {
+            food = value;
+            OnPropertyChanged();
+        }
+    }
+    public string Fri
+    {
+        get { return food; }
+        set
+        {
+            food = value;
+            OnPropertyChanged();
+        }
+    }
+    public string Sat
+    {
+        get { return food; }
+        set
+        {
+            food = value;
+            OnPropertyChanged();
+        }
+    }
+    public string Sun
     {
         get { return food; }
         set
@@ -51,32 +105,13 @@ public class Meal : INotifyPropertyChanged
 
         meals.Add(new Meal()
         {
-            Food = "Ali"
-        });
-
-        meals.Add(new Meal()
-        {
-            Food = "Ahmed",
-        });
-
-        meals.Add(new Meal()
-        {
-            Food = "Amjad",
-        });
-
-        meals.Add(new Meal()
-        {
-            Food = "Waqas",
-        });
-
-        meals.Add(new Meal()
-        {
-            Food = "Bilal",
-        });
-
-        meals.Add(new Meal()
-        {
-            Food = "Waqar",
+            Mon = "Ali"
+            Tues = "Ali"
+            Wed = "Ali"
+            Thurs = "Ali"
+            Fri = "Ali"
+            Sat = "Ali"
+            Sun = "Ali"
         });
 
         return meals;

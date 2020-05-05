@@ -34,17 +34,6 @@ namespace DinnerPlanner
 			Console.WriteLine(meals);
 			List<DinnerPlanner.Meal> NewMeals = meals.OfType<DinnerPlanner.Meal>().ToList();
 			var oc = new ObservableCollection<Meal>(NewMeals);
-			//meals.Add(new Meal()
-			//{
-			//	Mon = "Ali",
-			//Tues = "test",
-			//Wed = "burger",
-			//Thurs = "chips",
-			//Fri = "dog",
-			//Sat = "cat",
-			//Sun = "gjkjf"
-			//});
-
 			XmlSerializer xs = new XmlSerializer(typeof(ObservableCollection<Meal>));
 			using (StreamWriter wr = new StreamWriter("Meals.xml"))
 			{

@@ -11,7 +11,8 @@
     <Grid>
         <DataGrid Name="MenuPlan"
                   ItemsSource="{Binding}"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  Margin="0,0,0,240">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Monday"
                                     Binding="{Binding Mon}" />
@@ -29,6 +30,15 @@
                                     Binding="{Binding Sun}" />
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="SaveMeals"
+                Content="Save Meals"
+                Click="SaveMeals_Click"
+                HorizontalAlignment="Left"
+                Margin="0,184,692,0"
+                VerticalAlignment="Top"
+                Width="100"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"/>
 
     </Grid>
 </Window>

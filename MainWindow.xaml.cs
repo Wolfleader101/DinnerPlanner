@@ -1,27 +1,14 @@
-<<<<<<< HEAD
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-=======
 ﻿using System;
->>>>>>> parent of 96c4a9f... added JSON.Net as a package
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace DinnerPlanner
 {
@@ -36,174 +23,136 @@ namespace DinnerPlanner
 			MenuPlan.ItemsSource = Meal.GetMeals();
 		}
 
-		private void SaveMeals_Click(object sender, RoutedEventArgs e)
+		private void button_Click(object sender, RoutedEventArgs e)
 		{
-
-			//need this to update from JSON --- use it for generate meals
-			//MenuPlan.ItemsSource = Meal.GetMeals();
-
-			var row = MenuPlan.Items[0];
-			Console.WriteLine(row);
-			// Update JSON File
-			UpdateJson(row);
-
-			
-			
-
+			SaveDataToXml();
 		}
 
-		public void UpdateJson(object meals)
+		private void SaveDataToXml()
 		{
-			// serialize JSON directly to a file
-			using (StreamWriter file = File.CreateText(@"./test.json"))
+
+			var meals = MenuPlan.Items;
+			Console.WriteLine(meals);
+			List<DinnerPlanner.Meal> NewMeals = meals.OfType<DinnerPlanner.Meal>().ToList();
+			var oc = new ObservableCollection<Meal>(NewMeals);
+			XmlSerializer xs = new XmlSerializer(typeof(ObservableCollection<Meal>));
+			using (StreamWriter wr = new StreamWriter("Meals.xml"))
 			{
-				JsonSerializer serializer = new JsonSerializer();
-				serializer.Serialize(file, meals);
+				xs.Serialize(wr, oc);
 			}
 		}
-	}
-}
-public class Meal : INotifyPropertyChanged
-{
-	public event PropertyChangedEventHandler PropertyChanged;
-	private string mon;
-	private string tues;
-	private string wed;
-	private string thurs;
-	private string fri;
-	private string sat;
-	private string sun;
 
-	public string Mon
-	{
-		get { return mon; }
-		set
-		{
-			mon = value;
-			OnPropertyChanged();
-		}
-	}
-	public string Tues
-	{
-		get { return tues; }
-		set
-		{
-			tues = value;
-			OnPropertyChanged();
-		}
-	}
-	public string Wed
-	{
-		get { return wed; }
-		set
-		{
-			wed = value;
-			OnPropertyChanged();
-		}
-	}
-	public string Thurs
-	{
-		get { return thurs; }
-		set
-		{
-			thurs = value;
-			OnPropertyChanged();
-		}
-	}
-	public string Fri
-	{
-		get { return fri; }
-		set
-		{
-			fri = value;
-			OnPropertyChanged();
-		}
-	}
-	public string Sat
-	{
-		get { return sat; }
-		set
-		{
-			sat = value;
-			OnPropertyChanged();
-		}
-	}
-	public string Sun
-	{
-		get { return sun; }
-		set
-		{
-			sun = value;
-			OnPropertyChanged();
-		}
-	}
 
-	public static ObservableCollection<Meal> GetMeals()
-	{
 
-		// read JSON directly from a file
-		using (StreamReader file = File.OpenText(@"./test.json"))
-		using (JsonTextReader reader = new JsonTextReader(file))
+
+
+
+	}
+	public class Meal : INotifyPropertyChanged
+	{
+		public event PropertyChangedEventHandler PropertyChanged;
+		private string mon;
+		private string tues;
+		private string wed;
+		private string thurs;
+		private string fri;
+		private string sat;
+		private string sun;
+
+		public string Mon
 		{
-<<<<<<< HEAD
-			JObject output = (JObject)JToken.ReadFrom(reader);
-			string o = output.ToObject<string>();
-			var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(o);
-			foreach (var kv in dict)
+			get { return mon; }
+			set
 			{
-				Console.WriteLine(kv.Key + ":" + kv.Value);
+				mon = value;
+				OnPropertyChanged();
+			}
+		}
+		public string Tues
+		{
+			get { return tues; }
+			set
+			{
+				tues = value;
+				OnPropertyChanged();
+			}
+		}
+		public string Wed
+		{
+			get { return wed; }
+			set
+			{
+				wed = value;
+				OnPropertyChanged();
+			}
+		}
+		public string Thurs
+		{
+			get { return thurs; }
+			set
+			{
+				thurs = value;
+				OnPropertyChanged();
+			}
+		}
+		public string Fri
+		{
+			get { return fri; }
+			set
+			{
+				fri = value;
+				OnPropertyChanged();
+			}
+		}
+		public string Sat
+		{
+			get { return sat; }
+			set
+			{
+				sat = value;
+				OnPropertyChanged();
+			}
+		}
+		public string Sun
+		{
+			get { return sun; }
+			set
+			{
+				sun = value;
+				OnPropertyChanged();
+			}
+		}
+
+	}
+		public static ObservableCollection<Meal> GetMeals()
+		{
+			var meals = new ObservableCollection<Meal>();
+
+			////https://stackoverflow.com/questions/1194931/what-is-the-easiest-way-to-save-an-
+			XmlSerializer xs2 = new XmlSerializer(typeof(ObservableCollection<Meal>));
+			//meals.Add(new Meal()
+			//{
+			//	Mon = "Ali",
+			//	Tues = "test",
+			//	Wed = "burger",
+			//	Thurs = "chips",
+			//	Fri = "dog",
+			//	Sat = "cat",
+			//	Sun = "gjkjf"
+			//});
+			using (StreamReader rd = new StreamReader("Meals.xml"))
+			{
+				meals = xs2.Deserialize(rd) as ObservableCollection<Meal>;
 			}
 
-			return dict;
+			return meals;
 		}
 
-		
-
-		// create new meals object
-		//var meals = new ObservableCollection<Meal>();
-		//meals.Add(new Meal()
-		//{
-		//	Mon = "Ali",
-		//	Tues = "test",
-		//	Wed = "burger",
-		//	Thurs = "chips",
-		//	Fri = "dog",
-		//	Sat = "cat",
-		//	Sun = "gjkjf"
-		//});
-	}
-
-	private static void MakeJson(ObservableCollection<Meal> meals)
-	{
-		// serialize JSON directly to a file
-		using (StreamWriter file = File.CreateText(@"./test.json"))
+		protected void OnPropertyChanged([CallerMemberName] string name = null)
 		{
-			JsonSerializer serializer = new JsonSerializer();
-			serializer.Serialize(file, meals);
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
-=======
-			Mon = "Ali",
-			Tues = "test",
-			Wed = "burger",
-			Thurs = "chips",
-			Fri = "dog",
-			Sat = "cat",
-			Sun = "gjkjf"
-		});
-
-		return meals;
-	}
-
-	protected void OnPropertyChanged([CallerMemberName] string name = null)
-	{
-		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
->>>>>>> parent of 96c4a9f... added JSON.Net as a package
-	}
-
-	protected void OnPropertyChanged([CallerMemberName] string name = null)
-	{
-		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-	}
+	}	
 }
 
 

@@ -32,7 +32,6 @@ namespace DinnerPlanner
 		{
 
 			var meals = MenuPlan.Items;
-			Console.WriteLine(meals);
 			List<DinnerPlanner.Meal> NewMeals = meals.OfType<DinnerPlanner.Meal>().ToList();
 			var oc = new ObservableCollection<Meal>(NewMeals);
 			XmlSerializer xs = new XmlSerializer(typeof(ObservableCollection<Meal>));
@@ -41,12 +40,6 @@ namespace DinnerPlanner
 				xs.Serialize(wr, oc);
 			}
 		}
-
-
-
-
-
-
 	}
 	public class Meal : INotifyPropertyChanged
 	{
@@ -122,38 +115,51 @@ namespace DinnerPlanner
 				OnPropertyChanged();
 			}
 		}
-
-	}
 		public static ObservableCollection<Meal> GetMeals()
 		{
 			var meals = new ObservableCollection<Meal>();
-
-			////https://stackoverflow.com/questions/1194931/what-is-the-easiest-way-to-save-an-
-			XmlSerializer xs2 = new XmlSerializer(typeof(ObservableCollection<Meal>));
-			//meals.Add(new Meal()
-			//{
-			//	Mon = "Ali",
-			//	Tues = "test",
-			//	Wed = "burger",
-			//	Thurs = "chips",
-			//	Fri = "dog",
-			//	Sat = "cat",
-			//	Sun = "gjkjf"
-			//});
-			using (StreamReader rd = new StreamReader("Meals.xml"))
+			string MealPath = @".\Meals.xml";
+			if (File.Exists(MealPath))
 			{
-				meals = xs2.Deserialize(rd) as ObservableCollection<Meal>;
+				//https://stackoverflow.com/questions/1194931/what-is-the-easiest-way-to-save-an-
+				XmlSerializer xs2 = new XmlSerializer(typeof(ObservableCollection<Meal>));
+
+				using (StreamReader rd = new StreamReader("Meals.xml"))
+				{
+					meals = xs2.Deserialize(rd) as ObservableCollection<Meal>;
+				}
+
+			} else
+			{
+				meals.Add(new Meal()
+				{
+					Mon = "Ali",
+					Tues = "test",
+					Wed = "burger",
+					Thurs = "chips",
+					Fri = "dog",
+					Sat = "cat",
+					Sun = "gjkjf"
+				});
+
+				XmlSerializer xs = new XmlSerializer(typeof(ObservableCollection<Meal>));
+				using (StreamWriter wr = new StreamWriter("Meals.xml"))
+				{
+					xs.Serialize(wr, meals);
+				}
 			}
 
 			return meals;
 		}
-
 		protected void OnPropertyChanged([CallerMemberName] string name = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
-	}	
+	}
 }
+
+
+
 
 
 

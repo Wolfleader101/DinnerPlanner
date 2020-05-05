@@ -128,18 +128,22 @@ namespace DinnerPlanner
 
 			////https://stackoverflow.com/questions/1194931/what-is-the-easiest-way-to-save-an-
 			XmlSerializer xs2 = new XmlSerializer(typeof(ObservableCollection<Meal>));
+			//meals.Add(new Meal()
+			//{
+			//	Mon = "Ali",
+			//	Tues = "test",
+			//	Wed = "burger",
+			//	Thurs = "chips",
+			//	Fri = "dog",
+			//	Sat = "cat",
+			//	Sun = "gjkjf"
+			//});
 			using (StreamReader rd = new StreamReader("Meals.xml"))
 			{
 				meals = xs2.Deserialize(rd) as ObservableCollection<Meal>;
 			}
 
 			return meals;
-
-
-
-
-
-			//https://stackoverflow.com/questions/8863393/datagrid-loading-saving-xml
 		}
 
 		protected void OnPropertyChanged([CallerMemberName] string name = null)

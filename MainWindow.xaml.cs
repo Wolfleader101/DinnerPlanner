@@ -1,11 +1,14 @@
+<<<<<<< HEAD
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+=======
+﻿using System;
+>>>>>>> parent of 96c4a9f... added JSON.Net as a package
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -142,6 +145,7 @@ public class Meal : INotifyPropertyChanged
 		using (StreamReader file = File.OpenText(@"./test.json"))
 		using (JsonTextReader reader = new JsonTextReader(file))
 		{
+<<<<<<< HEAD
 			JObject output = (JObject)JToken.ReadFrom(reader);
 			string o = output.ToObject<string>();
 			var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(o);
@@ -177,6 +181,23 @@ public class Meal : INotifyPropertyChanged
 			JsonSerializer serializer = new JsonSerializer();
 			serializer.Serialize(file, meals);
 		}
+=======
+			Mon = "Ali",
+			Tues = "test",
+			Wed = "burger",
+			Thurs = "chips",
+			Fri = "dog",
+			Sat = "cat",
+			Sun = "gjkjf"
+		});
+
+		return meals;
+	}
+
+	protected void OnPropertyChanged([CallerMemberName] string name = null)
+	{
+		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+>>>>>>> parent of 96c4a9f... added JSON.Net as a package
 	}
 
 	protected void OnPropertyChanged([CallerMemberName] string name = null)

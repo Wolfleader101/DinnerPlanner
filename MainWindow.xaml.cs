@@ -23,7 +23,7 @@ namespace DinnerPlanner
 			MenuPlan.ItemsSource = Meal.GetMeals();
 		}
 
-		private void button_Click(object sender, RoutedEventArgs e)
+		private void save_Click(object sender, RoutedEventArgs e)
 		{
 			SaveDataToXml();
 		}
@@ -40,7 +40,23 @@ namespace DinnerPlanner
 				xs.Serialize(wr, oc);
 			}
 		}
+
+		private void random_Click(object sender, RoutedEventArgs e)
+		{
+			InitializeComponent();
+			List<MealItem> items = new List<MealItem>();
+			items.Add(new MealItem() { NewMeal = mealText.Text});
+
+
+			listBox.ItemsSource = items;
+		}
 	}
+
+	public class MealItem
+	{
+		public string NewMeal { get; set; }
+	}
+
 	public class Meal : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;

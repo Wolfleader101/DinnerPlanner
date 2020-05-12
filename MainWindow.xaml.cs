@@ -23,6 +23,17 @@ namespace DinnerPlanner
 			MenuPlan.ItemsSource = Meal.GetMeals();
 			MealBox.Items.Clear();
 			GetMealBox();
+
+			Closing += OnClosing;
+		}
+		private void OnClosing(object sender, CancelEventArgs cancelEventArgs)
+		{
+			MessageBoxResult result = MessageBox.Show("Do you really want to close the app?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			if (result == MessageBoxResult.No)
+			{
+				cancelEventArgs.Cancel = true;
+			}
+			Console.WriteLine("Application closing..");
 		}
 
 		private void SaveDataToXml()

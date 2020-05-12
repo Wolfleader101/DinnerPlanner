@@ -30,18 +30,11 @@
                                     Binding="{Binding Sun}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="save"
-                Content="Save"
-                HorizontalAlignment="Left"
-                Margin="10,184,0,0"
-                VerticalAlignment="Top"
-                Width="75"
-                Click="save_Click" />
 
         <Button x:Name="random"
                 Content="Random Meals"
                 HorizontalAlignment="Left"
-                Margin="10,209,0,0"
+                Margin="10,189,0,0"
                 VerticalAlignment="Top"
                 Width="93"
                 Click="random_Click" />
@@ -53,14 +46,36 @@
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Width="120" />
-        <ListBox x:Name="listBox"
+        <ListBox x:Name="MealBox"
                  HorizontalAlignment="Left"
-                 Height="100"
-                 Margin="302,190,0,0"
+                 Height="144"
+                 Margin="568,245,0,0"
                  VerticalAlignment="Top"
-                 Width="100">
+                 Width="120">
 
             <TextBlock Text="{Binding NewMeal}" />
         </ListBox>
+        <Button x:Name="add"
+                Content="Add"
+                HorizontalAlignment="Left"
+                Margin="707,189,0,0"
+                VerticalAlignment="Top"
+                Width="75"
+                Click="Add_Meal" />
+        <TextBlock x:Name="AddedMeals"
+                   HorizontalAlignment="Left"
+                   Height="22"
+                   Margin="567,223,0,0"
+                   TextWrapping="Wrap"
+                   Text="Added Meals:"
+                   VerticalAlignment="Top"
+                   Width="121" />
+        <Button x:Name="Delete"
+                Content="Delete"
+                HorizontalAlignment="Left"
+                Margin="707,245,0,0"
+                VerticalAlignment="Top"
+                Width="75"
+                Click="Delete_Meal" />
     </Grid>
 </Window>

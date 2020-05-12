@@ -21,11 +21,8 @@ namespace DinnerPlanner
 		{
 			InitializeComponent();
 			MenuPlan.ItemsSource = Meal.GetMeals();
-		}
-
-		private void save_Click(object sender, RoutedEventArgs e)
-		{
-			SaveDataToXml();
+			MealBox.Items.Clear();
+			GetMealBox();
 		}
 
 		private void SaveDataToXml()
@@ -40,15 +37,75 @@ namespace DinnerPlanner
 				xs.Serialize(wr, oc);
 			}
 		}
+		private void UpdateMealBox()
+		{
+			var meals = MealBox.Items;
+			List<string> NewMeals = meals.OfType<string>().ToList();
+			XmlSerializer xs = new XmlSerializer(typeof(List<string>));
+			using (StreamWriter wr = new StreamWriter("AddedMeals.xml"))
+			{
+				xs.Serialize(wr, NewMeals);
+			}
+		}
 
+		private void GetMealBox()
+		{
+			var meals = new List<string>();
+			string MealPath = @".\AddedMeals.xml";
+			if (File.Exists(MealPath))
+			{
+				 XmlSerializer xs2 = new XmlSerializer(typeof(List<string>));
+
+				using (StreamReader rd = new StreamReader("AddedMeals.xml"))
+				{
+					meals = xs2.Deserialize(rd) as List<string>;
+					meals.ForEach(delegate (string s) { MealBox.Items.Add(s); });
+				}
+
+			}
+			else
+			{
+				XmlSerializer xs = new XmlSerializer(typeof(List<string>));
+				using (StreamWriter wr = new StreamWriter("AddedMeals.xml"))
+				{
+					xs.Serialize(wr, meals);
+				}
+			}
+		}
 		private void random_Click(object sender, RoutedEventArgs e)
 		{
 			InitializeComponent();
 			List<MealItem> items = new List<MealItem>();
 			items.Add(new MealItem() { NewMeal = mealText.Text});
+			SaveDataToXml();
 
+		}
 
-			listBox.ItemsSource = items;
+		private void Add_Meal(object sender, RoutedEventArgs e)
+		{
+			var _text = mealText.Text;
+			if(_text != "")
+			{
+				MealBox.Items.Add(_text);
+				UpdateMealBox();
+			} else
+			{
+				MessageBox.Show("Please enter a meal");
+			}
+			
+		}
+
+		private void Delete_Meal(object sender, RoutedEventArgs e)
+		{
+			if(MealBox.SelectedItem != null)
+			{
+				MealBox.Items.RemoveAt(MealBox.Items.IndexOf(MealBox.SelectedItem));
+				UpdateMealBox();
+			} else
+			{
+				MessageBox.Show("Please select a meal to delete");
+			}
+			
 		}
 	}
 

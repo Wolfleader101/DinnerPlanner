@@ -128,8 +128,7 @@ namespace DinnerPlanner
 						
 					} while (newMeals.Contains(_meals[RandIndex])); // make sure new array doesnt already contain that
 					// Add random meal to newMeal
-					newMeals.Add(_meals[RandIndex]);
-					//Console.WriteLine(_meals[RandIndex]);			
+					newMeals.Add(_meals[RandIndex]);		
 				});
 				
 			}

@@ -7,76 +7,138 @@
         mc:Ignorable="d"
         Title="MainWindow"
         Height="450"
-        Width="800">
-    <Grid>
-        <DataGrid Name="MenuPlan"
-                  ItemsSource="{Binding}"
-                  AutoGenerateColumns="False"
-                  Margin="0,0,0,240">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Monday"
-                                    Binding="{Binding Mon}" />
-                <DataGridTextColumn Header="Tuesday"
-                                    Binding="{Binding Tues}" />
-                <DataGridTextColumn Header="Wednesday"
-                                    Binding="{Binding Wed}" />
-                <DataGridTextColumn Header="Thursday"
-                                    Binding="{Binding Thurs}" />
-                <DataGridTextColumn Header="Friday"
-                                    Binding="{Binding Fri}" />
-                <DataGridTextColumn Header="Saturday"
-                                    Binding="{Binding Sat}" />
-                <DataGridTextColumn Header="Sunday"
-                                    Binding="{Binding Sun}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        Width="850"
+        Background="#FF252525">
+    <Viewbox>
+        <Grid Height="394">
+            <DataGrid Name="MenuPlan"
+                      ItemsSource="{Binding}"
+                      AutoGenerateColumns="False"
+                      Margin="0,0,401,217"
+                      Cursor="Hand">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Monday"
+                                        Binding="{Binding Mon}" />
+                    <DataGridTextColumn Header="Tuesday"
+                                        Binding="{Binding Tues}" />
+                    <DataGridTextColumn Header="Wednesday"
+                                        Binding="{Binding Wed}" />
+                    <DataGridTextColumn Header="Thursday"
+                                        Binding="{Binding Thurs}" />
+                    <DataGridTextColumn Header="Friday"
+                                        Binding="{Binding Fri}" />
+                    <DataGridTextColumn Header="Saturday"
+                                        Binding="{Binding Sat}" />
+                    <DataGridTextColumn Header="Sunday"
+                                        Binding="{Binding Sun}" />
+                </DataGrid.Columns>
+            </DataGrid>
 
-        <Button x:Name="random"
-                Content="Random Meals"
-                HorizontalAlignment="Left"
-                Margin="10,189,0,0"
-                VerticalAlignment="Top"
-                Width="93"
-                Click="random_Click" />
+            <Button x:Name="random"
+                    Content="Generate Random Meals"
+                    HorizontalAlignment="Left"
+                    Margin="501,244,0,0"
+                    VerticalAlignment="Top"
+                    Width="142"
+                    Click="random_Click"
+                    Background="#FF71E200"
+                    Foreground="Black"
+                    Cursor="Hand">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="#FF707070"
+                                     Opacity="0" />
+                </Button.BorderBrush>
+            </Button>
 
-        <TextBox x:Name="mealText"
-                 Text="Enter a meal"
-                 HorizontalAlignment="Left"
-                 Height="23"
-                 Margin="568,190,0,0"
-                 TextWrapping="Wrap"
-                 VerticalAlignment="Top"
-                 Width="120" />
-        <ListBox x:Name="MealBox"
-                 HorizontalAlignment="Left"
-                 Height="144"
-                 Margin="568,245,0,0"
-                 VerticalAlignment="Top"
-                 Width="120">
+            <TextBox x:Name="mealText"
+                     Text="Enter a meal (e.g Burgers)"
+                     HorizontalAlignment="Left"
+                     Height="23"
+                     Margin="501,19,0,0"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Top"
+                     Width="142"
+                     Foreground="White">
+                <TextBox.SelectionBrush>
+                    <SolidColorBrush Color="#FF3399FF"
+                                     Opacity="0" />
+                </TextBox.SelectionBrush>
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF5B5B5B"
+                                     Opacity="0.8" />
+                </TextBox.Background>
+                <TextBox.BorderBrush>
+                    <SolidColorBrush Color="#FFABADB3"
+                                     Opacity="0" />
+                </TextBox.BorderBrush>
+            </TextBox>
+            <ListBox x:Name="MealBox"
+                     HorizontalAlignment="Left"
+                     Height="144"
+                     Margin="501,84,0,0"
+                     VerticalAlignment="Top"
+                     Width="142"
+                     Foreground="White"
+                     Background="#FF252525"
+                     BorderBrush="#FFF78A11"
+                     Cursor="Hand">
 
-            <TextBlock Text="{Binding NewMeal}" />
-        </ListBox>
-        <Button x:Name="add"
-                Content="Add"
-                HorizontalAlignment="Left"
-                Margin="707,189,0,0"
-                VerticalAlignment="Top"
-                Width="75"
-                Click="Add_Meal" />
-        <TextBlock x:Name="AddedMeals"
-                   HorizontalAlignment="Left"
-                   Height="22"
-                   Margin="567,223,0,0"
-                   TextWrapping="Wrap"
-                   Text="Added Meals:"
-                   VerticalAlignment="Top"
-                   Width="121" />
-        <Button x:Name="Delete"
-                Content="Delete"
-                HorizontalAlignment="Left"
-                Margin="707,245,0,0"
-                VerticalAlignment="Top"
-                Width="75"
-                Click="Delete_Meal" />
-    </Grid>
+                <TextBlock Text="{Binding NewMeal}" />
+            </ListBox>
+            <Button x:Name="add"
+                    Content="Add"
+                    HorizontalAlignment="Left"
+                    Margin="658,18,0,0"
+                    VerticalAlignment="Top"
+                    Width="75"
+                    Click="Add_Meal"
+                    Background="#FF40800B"
+                    Foreground="Black"
+                    Cursor="Hand">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="#FF707070"
+                                     Opacity="0" />
+                </Button.BorderBrush>
+                <Button.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Button.IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Button.Background"
+                                        Value="Green" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBlock x:Name="AddedMeals"
+                       HorizontalAlignment="Left"
+                       Height="22"
+                       Margin="501,57,0,0"
+                       TextWrapping="Wrap"
+                       Text="Added Meals:"
+                       VerticalAlignment="Top"
+                       Width="123"
+                       Foreground="#FFF79200"
+                       FontFamily="Candara"
+                       FontSize="20"
+                       FontWeight="Bold" />
+            <Button x:Name="Delete"
+                    Content="Delete"
+                    HorizontalAlignment="Left"
+                    Margin="658,84,0,0"
+                    VerticalAlignment="Top"
+                    Width="75"
+                    Click="Delete_Meal"
+                    RenderTransformOrigin="0.28,-5.42"
+                    Background="Red"
+                    Foreground="White"
+                    Cursor="Hand">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="#FF707070"
+                                     Opacity="0" />
+                </Button.BorderBrush>
+            </Button>
+        </Grid>
+    </Viewbox>
 </Window>

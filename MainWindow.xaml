@@ -38,6 +38,7 @@
                 VerticalAlignment="Top"
                 Width="93"
                 Click="random_Click" />
+
         <TextBox x:Name="mealText"
                  Text="Enter a meal"
                  HorizontalAlignment="Left"

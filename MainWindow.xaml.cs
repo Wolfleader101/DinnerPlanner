@@ -48,6 +48,10 @@ namespace DinnerPlanner
 				xs.Serialize(wr, oc);
 			}
 		}
+		private void UpdateMenuPlan(ObservableCollection<Meal> oc)
+		{
+			MenuPlan.ItemsSource = oc;
+		}
 		private void UpdateMealBox()
 		{
 			var meals = MealBox.Items;
@@ -65,7 +69,7 @@ namespace DinnerPlanner
 			string MealPath = @".\AddedMeals.xml";
 			if (File.Exists(MealPath))
 			{
-				 XmlSerializer xs2 = new XmlSerializer(typeof(List<string>));
+				XmlSerializer xs2 = new XmlSerializer(typeof(List<string>));
 
 				using (StreamReader rd = new StreamReader("AddedMeals.xml"))
 				{
@@ -83,11 +87,70 @@ namespace DinnerPlanner
 				}
 			}
 		}
+		private List<string> GetLocalMeals()
+		{
+			var meals = new List<string>();
+			string MealPath = @".\AddedMeals.xml";
+			if (File.Exists(MealPath))
+			{
+				XmlSerializer xs2 = new XmlSerializer(typeof(List<string>));
+
+				using (StreamReader rd = new StreamReader("AddedMeals.xml"))
+				{
+					meals = xs2.Deserialize(rd) as List<string>;
+				}
+			}
+			else
+			{
+				XmlSerializer xs = new XmlSerializer(typeof(List<string>));
+				using (StreamWriter wr = new StreamWriter("AddedMeals.xml"))
+				{
+					xs.Serialize(wr, meals);
+				}
+			}
+			return meals;
+		}
 		private void random_Click(object sender, RoutedEventArgs e)
 		{
-			InitializeComponent();
-			List<MealItem> items = new List<MealItem>();
-			items.Add(new MealItem() { NewMeal = mealText.Text});
+			var _meals = GetLocalMeals();
+			var newMeals = new List<string>();
+			// if atleast 7 meals (1 for each day)
+			if (_meals.Count >= 7)
+			{
+				Random rand = new Random();
+				int RandIndex;
+				_meals.ForEach(delegate (string s)
+				{
+					do
+					{
+						// get random index
+						RandIndex = rand.Next(_meals.Count);
+						
+					} while (newMeals.Contains(_meals[RandIndex])); // make sure new array doesnt already contain that
+					// Add random meal to newMeal
+					newMeals.Add(_meals[RandIndex]);
+					//Console.WriteLine(_meals[RandIndex]);			
+				});
+				
+			}
+			else
+			{
+				MessageBox.Show("You must have atleast 7 meals for this", "Error - Cannot Randomly Generate", MessageBoxButton.OK, MessageBoxImage.Error);
+				Console.WriteLine(_meals.Count);
+			}
+			//newMeals;
+			var ocMeals = new ObservableCollection<Meal>();
+			ocMeals.Add(new Meal()
+			{
+				Mon = newMeals[0],
+				Tues = newMeals[1],
+				Wed = newMeals[2],
+				Thurs = newMeals[3],
+				Fri = newMeals[4],
+				Sat = newMeals[5],
+				Sun = newMeals[6]
+			});
+			UpdateMenuPlan(ocMeals);
 			SaveDataToXml();
 
 		}
@@ -95,34 +158,31 @@ namespace DinnerPlanner
 		private void Add_Meal(object sender, RoutedEventArgs e)
 		{
 			var _text = mealText.Text;
-			if(_text != "")
+			if (_text != "")
 			{
 				MealBox.Items.Add(_text);
 				UpdateMealBox();
-			} else
-			{
-				MessageBox.Show("Please enter a meal");
 			}
-			
+			else
+			{
+				MessageBox.Show("Please enter a valid meal \n it cannot be empty", "Error - Cannot add meal", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+
 		}
 
 		private void Delete_Meal(object sender, RoutedEventArgs e)
 		{
-			if(MealBox.SelectedItem != null)
+			if (MealBox.SelectedItem != null)
 			{
 				MealBox.Items.RemoveAt(MealBox.Items.IndexOf(MealBox.SelectedItem));
 				UpdateMealBox();
-			} else
-			{
-				MessageBox.Show("Please select a meal to delete");
 			}
-			
-		}
-	}
+			else
+			{
+				MessageBox.Show("Please select a meal to delete", "Error - Cannot delete meal", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
 
-	public class MealItem
-	{
-		public string NewMeal { get; set; }
+		}
 	}
 
 	public class Meal : INotifyPropertyChanged
@@ -213,7 +273,8 @@ namespace DinnerPlanner
 					meals = xs2.Deserialize(rd) as ObservableCollection<Meal>;
 				}
 
-			} else
+			}
+			else
 			{
 				meals.Add(new Meal()
 				{

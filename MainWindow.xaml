@@ -10,7 +10,8 @@
         Width="850"
         Background="#FF252525">
     <Viewbox>
-        <Grid Height="394">
+        <Grid Height="394"
+              ShowGridLines="true">
             <DataGrid Name="MenuPlan"
                       ItemsSource="{Binding}"
                       AutoGenerateColumns="False"
@@ -43,7 +44,8 @@
                     Click="random_Click"
                     Background="#FF71E200"
                     Foreground="Black"
-                    Cursor="Hand">
+                    Cursor="Hand"
+                    >
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070"
                                      Opacity="0" />

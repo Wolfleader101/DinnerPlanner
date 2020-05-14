@@ -17,3 +17,4 @@ namespace DinnerPlanner
 
 	}
 }
+//https://stackoverflow.com/questions/7521841/stretch-grid-to-window-size

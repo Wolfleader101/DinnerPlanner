@@ -9,17 +9,53 @@
         Height="450"
         Width="850"
         Background="#FF252525">
-    <Viewbox>
-        <Grid Height="394"
+    <!--<Viewbox>-->
+        <Grid
               ShowGridLines="true">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+
+            </Grid.RowDefinitions>
             <DataGrid Name="MenuPlan"
                       ItemsSource="{Binding}"
+                      Grid.Column="0"
+                      Grid.Row="0"
                       AutoGenerateColumns="False"
-                      Margin="0,0,401,217"
-                      Cursor="Hand">
+                  Margin="10,10,36,207"
+                  Cursor="Hand"
+                      Background="#FF6C6C6C"
+                      Foreground="White"
+                      BorderBrush="#FF456D95"
+                      FontFamily="Trebuchet MS"
+                      FontSize="14">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background"
+                                Value="#FF3E3E3E" />
+                        <Setter Property="BorderBrush"
+                                Value="#FF321E1E" />
+                        <Setter Property="BorderThickness"
+                                Value="0,0,1,0" />
+                        <Setter Property="Foreground"
+                                Value="White" />
+                    </Style>
+                    <Style  TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Background"
+                                Value="#FF6C6C6C" />
+                        <Setter Property="BorderBrush"
+                                Value="#FF321E1E" />
+                        <Setter Property="BorderThickness"
+                                Value="0,0,1,0" />
+                    </Style>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Monday"
-                                        Binding="{Binding Mon}" />
+                                        Binding="{Binding Mon}"
+                                        Foreground="Black" />
                     <DataGridTextColumn Header="Tuesday"
                                         Binding="{Binding Tues}" />
                     <DataGridTextColumn Header="Wednesday"
@@ -37,15 +73,16 @@
 
             <Button x:Name="random"
                     Content="Generate Random Meals"
+                    Grid.Column="1"
+                    Grid.Row="0"
                     HorizontalAlignment="Left"
-                    Margin="501,244,0,0"
+                    Margin="50,244,0,0"
                     VerticalAlignment="Top"
                     Width="142"
                     Click="random_Click"
                     Background="#FF71E200"
                     Foreground="Black"
-                    Cursor="Hand"
-                    >
+                    Cursor="Hand">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070"
                                      Opacity="0" />
@@ -54,16 +91,17 @@
 
             <TextBox x:Name="mealText"
                      Text="Enter a meal (e.g Burgers)"
+                     Grid.Column="1"
+                     Grid.Row="0"
                      HorizontalAlignment="Left"
                      Height="23"
-                     Margin="501,19,0,0"
+                     Margin="50,19,0,0"
                      TextWrapping="Wrap"
                      VerticalAlignment="Top"
                      Width="142"
                      Foreground="White">
                 <TextBox.SelectionBrush>
-                    <SolidColorBrush Color="#FF3399FF"
-                                     Opacity="0" />
+                    <SolidColorBrush Color="#FF0080FF" />
                 </TextBox.SelectionBrush>
                 <TextBox.Background>
                     <SolidColorBrush Color="#FF5B5B5B"
@@ -76,8 +114,10 @@
             </TextBox>
             <ListBox x:Name="MealBox"
                      HorizontalAlignment="Left"
+                     Grid.Column="1"
+                     Grid.Row="0"
                      Height="144"
-                     Margin="501,84,0,0"
+                     Margin="50,84,0,0"
                      VerticalAlignment="Top"
                      Width="142"
                      Foreground="White"
@@ -89,12 +129,14 @@
             </ListBox>
             <Button x:Name="add"
                     Content="Add"
+                    Grid.Column="1"
+                    Grid.Row="0"
                     HorizontalAlignment="Left"
-                    Margin="658,18,0,0"
-                    VerticalAlignment="Top"
+                Margin="203,19,0,0"
+                VerticalAlignment="Top"
                     Width="75"
                     Click="Add_Meal"
-                    Background="#FF40800B"
+                    Background="#FF71E200"
                     Foreground="Black"
                     Cursor="Hand">
                 <Button.BorderBrush>
@@ -114,9 +156,11 @@
                 </Button.Style>
             </Button>
             <TextBlock x:Name="AddedMeals"
+                       Grid.Column="1"
+                       Grid.Row="0"
                        HorizontalAlignment="Left"
                        Height="22"
-                       Margin="501,57,0,0"
+                       Margin="50,57,0,0"
                        TextWrapping="Wrap"
                        Text="Added Meals:"
                        VerticalAlignment="Top"
@@ -127,8 +171,10 @@
                        FontWeight="Bold" />
             <Button x:Name="Delete"
                     Content="Delete"
+                    Grid.Column="1"
+                    Grid.Row="0"
                     HorizontalAlignment="Left"
-                    Margin="658,84,0,0"
+                    Margin="203,84,0,0"
                     VerticalAlignment="Top"
                     Width="75"
                     Click="Delete_Meal"
@@ -142,5 +188,5 @@
                 </Button.BorderBrush>
             </Button>
         </Grid>
-    </Viewbox>
+    <!--</Viewbox>-->
 </Window>

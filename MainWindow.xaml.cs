@@ -130,28 +130,24 @@ namespace DinnerPlanner
 					// Add random meal to newMeal
 					newMeals.Add(_meals[RandIndex]);		
 				});
-				
+				var ocMeals = new ObservableCollection<Meal>();
+				ocMeals.Add(new Meal()
+				{
+					Mon = newMeals[0],
+					Tues = newMeals[1],
+					Wed = newMeals[2],
+					Thurs = newMeals[3],
+					Fri = newMeals[4],
+					Sat = newMeals[5],
+					Sun = newMeals[6]
+				});
+				UpdateMenuPlan(ocMeals);
+				SaveDataToXml();
 			}
 			else
 			{
 				MessageBox.Show("You must have atleast 7 meals for this", "Error - Cannot Randomly Generate", MessageBoxButton.OK, MessageBoxImage.Error);
-				Console.WriteLine(_meals.Count);
 			}
-			//newMeals;
-			var ocMeals = new ObservableCollection<Meal>();
-			ocMeals.Add(new Meal()
-			{
-				Mon = newMeals[0],
-				Tues = newMeals[1],
-				Wed = newMeals[2],
-				Thurs = newMeals[3],
-				Fri = newMeals[4],
-				Sat = newMeals[5],
-				Sun = newMeals[6]
-			});
-			UpdateMenuPlan(ocMeals);
-			SaveDataToXml();
-
 		}
 
 		private void Add_Meal(object sender, RoutedEventArgs e)

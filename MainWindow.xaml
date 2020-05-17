@@ -232,7 +232,7 @@
                 Foreground="Black"
                 Cursor="Hand">
             <Button.BorderBrush>
-                <SolidColorBrush Color="#FF707070"
+                <SolidColorBrush Color="#FF970000"
                                  Opacity="0" />
             </Button.BorderBrush>
             <Button.Style>

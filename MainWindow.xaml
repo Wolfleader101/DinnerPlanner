@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DinnerPlanner"
         xmlns:sdk="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Dinner Planner"
         Height="500"
         Width="850"
         Background="#FF252525">
@@ -26,6 +26,7 @@
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Bottom" />
         <DataGrid Name="MenuPlan"
+                  AutomationProperties.Name="Menu Plan"
                   ItemsSource="{Binding}"
                   Grid.Column="0"
                   Grid.Row="0"
@@ -34,14 +35,14 @@
                   MaxColumnWidth="100"
                   AutoGenerateColumns="False"
                   Margin="69,5,70,15"
-                  Cursor="Hand"
                   Background="#FF6C6C6C"
                   Foreground="White"
                   BorderBrush="#FF456D95"
                   FontFamily="Trebuchet MS"
                   FontSize="14"
                   CanUserResizeColumns="True"
-                  CanUserResizeRows="True">
+                  CanUserResizeRows="True"
+                  IsReadOnly="True">
 
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -65,8 +66,9 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Monday"
-                                    Binding="{Binding Mon}"
-                                    Width="*">
+                                    AutomationProperties.Name="Monday"
+                                    Width="*"
+                                    Binding="{Binding Mon}">
                     <DataGridTextColumn.ElementStyle>
                         <Style>
                             <Setter Property="TextBlock.TextWrapping"
@@ -77,6 +79,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Tuesday"
+                                    AutomationProperties.Name="Tuesday"
                                     Width="*"
                                     Binding="{Binding Tues}">
                     <DataGridTextColumn.ElementStyle>
@@ -89,6 +92,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Wednesday"
+                                    AutomationProperties.Name="Wednesday"
                                     Width="*"
                                     Binding="{Binding Wed}">
                     <DataGridTextColumn.ElementStyle>
@@ -101,6 +105,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Thursday"
+                                    AutomationProperties.Name="Thursday"
                                     Width="*"
                                     Binding="{Binding Thurs}">
                     <DataGridTextColumn.ElementStyle>
@@ -113,6 +118,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Friday"
+                                    AutomationProperties.Name="Friday"
                                     Width="*"
                                     Binding="{Binding Fri}">
                     <DataGridTextColumn.ElementStyle>
@@ -125,6 +131,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Saturday"
+                                    AutomationProperties.Name="Saturday"
                                     Width="*"
                                     Binding="{Binding Sat}">
                     <DataGridTextColumn.ElementStyle>
@@ -137,6 +144,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Sunday"
+                                    AutomationProperties.Name="Sunday"
                                     Width="*"
                                     Binding="{Binding Sun}">
                     <DataGridTextColumn.ElementStyle>
@@ -152,7 +160,7 @@
         </DataGrid>
 
         <Button x:Name="random"
-                Content="Generate Random Meals"
+                Content="_Generate Random Meals"
                 Grid.Column="1"
                 Grid.Row="1"
                 HorizontalAlignment="Left"
@@ -170,6 +178,8 @@
         </Button>
 
         <TextBox x:Name="mealText"
+                 AutomationProperties.LiveSetting="Polite"
+                 AutomationProperties.Name="Enter a meal name"
                  Text="Enter a meal (e.g Burgers)"
                  Grid.Column="1"
                  Grid.Row="1"
@@ -193,6 +203,7 @@
             </TextBox.BorderBrush>
         </TextBox>
         <ListBox x:Name="MealBox"
+                 AutomationProperties.Name="List of meals"
                  HorizontalAlignment="Left"
                  Grid.Column="1"
                  Grid.Row="1"
@@ -208,7 +219,8 @@
             <TextBlock Text="{Binding NewMeal}" />
         </ListBox>
         <Button x:Name="add"
-                Content="Add"
+                AutomationProperties.Name="Add meal"
+                Content="_Add"
                 Grid.Column="1"
                 Grid.Row="1"
                 HorizontalAlignment="Left"
@@ -236,6 +248,7 @@
             </Button.Style>
         </Button>
         <TextBlock x:Name="AddedMeals"
+                   AutomationProperties.Name="Added Meals"
                    Grid.Column="1"
                    Grid.Row="1"
                    HorizontalAlignment="Left"
@@ -250,7 +263,8 @@
                    FontSize="20"
                    FontWeight="Bold" />
         <Button x:Name="Delete"
-                Content="Delete"
+                AutomationProperties.Name="Delete meal"
+                Content="_Delete"
                 Grid.Column="1"
                 Grid.Row="1"
                 HorizontalAlignment="Left"
